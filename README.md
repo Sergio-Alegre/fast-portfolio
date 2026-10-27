@@ -75,18 +75,23 @@ Use the `gallery.njk` layout for the page (`layout: gallery.njk` in its header) 
 
 ## Quick start
 
-You need [Node.js](https://nodejs.org) 22 or newer.
+### What you need
+
+- **Node.js 22 or newer:** the free program that builds the site. Download it from [nodejs.org](https://nodejs.org) and install it like any other app.
+- **A terminal:** the window where you type commands. On Windows, search for "Terminal"; on Mac, open "Terminal" from Applications > Utilities. Inside your folder, right-click and choose *Open in Terminal* (Windows), or drag the folder onto the Terminal icon (Mac).
+
+### Steps
+
+1. Click **Use this template** on GitHub, then *Create a new repository*. This gives you your own copy.
+2. Get it onto your computer: on your new repository, **Code > Download ZIP**, and unzip it. (If you already use Git, clone it instead.)
+3. Open a terminal inside that folder, then run:
 
 ```bash
-git clone https://github.com/Sergio-Alegre/fast-portfolio.git my-portfolio
-cd my-portfolio
 npm install
 npm start
 ```
 
-Open <http://localhost:8080>. The first build takes a few seconds per gallery because every image is converted; later builds reuse the results.
-
-You can also click **Use this template** on GitHub to start your own repository.
+Open <http://localhost:8080>. The first run takes a minute: it converts every photo. Later runs are fast.
 
 Using an AI coding assistant? Point it at `AGENTS.md`: it explains the project and what to ask you before it publishes anything.
 
@@ -98,7 +103,7 @@ Using an AI coding assistant? Point it at `AGENTS.md`: it explains the project a
 2. **Replace the example photos.** Delete `src/images/galleries/example-gallery/` and `example-series/` (they are generated abstract images) and add your own folders. See [docs/galleries.md](docs/galleries.md).
 3. **Edit the pages** in `src/`: `index.md` (home gallery), `series/`, `selected/`, `about/`, `contact/`, `privacy/`. Each is a Markdown file with a short header.
 4. **Replace the logo and the icons** in `src/images/icons/`: `logo.svg` is the square placeholder shown in the header (point `logo` in `site.js` at your own image, or set it to `null`), and the rest are the favicons and app icons.
-5. **Write your own privacy policy.** `src/privacy/index.md` is only a placeholder.
+5. **Write your own privacy policy.** `src/privacy/index.md` is only a placeholder. Depending on your country and on what your site does, you may also need an imprint. This template cannot decide that for you.
 
 ### Typeface
 
@@ -121,6 +126,8 @@ None by default. To use [Matomo](https://matomo.org) (cookie-less, respecting Do
 ---
 
 ## Deploying
+
+Not sure which one to pick? **GitHub Pages** is free and publishes by itself every time you save your changes.
 
 ```bash
 npm run build
