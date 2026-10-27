@@ -1,7 +1,9 @@
 # Fast Portfolio
 
 A fast, static photography portfolio for [Eleventy](https://www.11ty.dev).
-Export your photos from Lightroom into a folder, and the gallery builds itself.
+Export your photos from your photo editing software into a folder, and the gallery builds itself.
+
+You have exported and organized pictures into folders many, many times in your life, but building online galleries, not so often. So let's use the skill with the least mental friction to publish our work online.
 
 - **Galleries from folders.** Drop the exported JPEGs in `src/images/galleries/<name>/`, add one line to a page, and you get a gallery. No manifest, no captions file, no admin panel.
 - **Justified rows, no cropping.** Every photo keeps its original aspect ratio; rows are packed the way Flickr does it.
