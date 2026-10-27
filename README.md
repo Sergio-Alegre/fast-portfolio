@@ -55,7 +55,7 @@ src/images/galleries/portraits/
 
 When the site is built, it calculates the grid by itself, in justified rows that show every picture complete: nothing is cropped away. It then builds the gallery without you ever going through the settings pages of WordPress, creating online galleries, dragging and dropping, or any of the workflow you probably already know. This is just exporting into a folder, that's it.
 
-Here is a complete page, the one that holds a home gallery. The `gallery.njk` layout gives the gallery its wide container:
+Here is a complete page, the one that holds a home gallery:
 
 ```
 ---
@@ -67,7 +67,9 @@ title: Portraits
 {% gallery "portraits" %}
 ```
 
-The files can be JPEG or PNG. To add, remove or reorder pictures, change the files in the folder and build again; no page needs to be edited. Export settings, alt texts and the other shortcodes are in [docs/galleries.md](docs/galleries.md).
+The files can be JPEG or PNG. To add, remove or reorder pictures, change the files in the folder and build again; no page needs to be edited.
+
+Use the `gallery.njk` layout for the page (`layout: gallery.njk` in its header) to get the wide container. The full export settings and the other shortcodes (`selectedWorks`, `image`, `youtube`) are in [docs/galleries.md](docs/galleries.md).
 
 ---
 
@@ -113,18 +115,6 @@ shown as a text link.
 ### Analytics
 
 None by default. To use [Matomo](https://matomo.org) (cookie-less, respecting Do Not Track), set `analytics.matomo.url` in `site.js`.
-
----
-
-## Adding a gallery
-
-Short version: export to `src/images/galleries/my-gallery/` as `my-gallery-001.jpg`, `my-gallery-002.jpg`, and so on, then in any page:
-
-```
-{% gallery "my-gallery" %}
-```
-
-Use the `gallery.njk` layout for the page (`layout: gallery.njk` in its header) to get the wide container. The full export settings and the other shortcodes (`selectedWorks`, `image`, `youtube`) are in [docs/galleries.md](docs/galleries.md).
 
 ---
 
