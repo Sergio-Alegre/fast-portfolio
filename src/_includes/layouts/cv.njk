@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+  <head>
+    {% include "head.njk" %}
+  </head>
+
+  <body>
+    <!-- Layout for /cv/ only: no header or navigation. The logo (a link to the
+         home page) sits inside the page, to the left of the name (see .cv-head
+         in styles.css). The body is wider than the text column of base.njk. -->
+    <main class="cv-main">
+      <div class="content cv-page">
+        {{ content | safe }}
+      </div>
+    </main>
+
+    {% include "footer.njk" %}
+  </body>
+</html>

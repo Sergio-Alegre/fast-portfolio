@@ -482,3 +482,297 @@ a {
     margin-top: 0;
   }
 }
+
+/* =========================
+   8. CURRICULUM (/cv/)
+   Own layout (cv.njk): no header (the logo sits in the page, to the left of
+   the name) and a body wider than the 696px text column of base.njk. Each
+   entry is a row "label (years) + text" separated by a thin line; on mobile
+   the label goes above the text. See docs/cv.md.
+========================= */
+
+:root {
+  --cv-width: 900px;
+  /* Size of the name (h1). The logo uses it too, to line up with the name. */
+  --cv-name-size: 2.5rem;
+  --cv-logo-size: 80px;
+}
+
+/* No fixed header here, so there is nothing to leave room for (the normal
+   main keeps space for it). The class selector wins over main and over the
+   mobile rule of the responsive section. */
+main.cv-main {
+  margin-top: 0;
+}
+
+.content.cv-page {
+  max-width: var(--cv-width);
+  padding: 1.5rem 1em 2rem;
+}
+
+/* Logo + name on the left, photo on the right. Everything is aligned to the
+   top (not centered): if the name wraps on narrow screens, the photo does not
+   move down relative to the logo. */
+.cv-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* .content a draws an underline: not wanted on the logo. */
+.cv-head .cv-logo {
+  flex: 0 0 auto;
+  border-bottom: 0;
+  /* Top of the logo level with the capital letters of the name. */
+  margin-top: calc(var(--cv-name-size) * 0.16);
+  transition: transform 0.2s ease;
+}
+
+@media (hover: hover) {
+  .cv-head .cv-logo:hover {
+    transform: scale(1.05);
+  }
+}
+
+.cv-head .cv-logo:focus-visible {
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-head .cv-logo {
+    transition: none;
+  }
+}
+
+.cv-head .cv-logo img {
+  display: block;
+  width: var(--cv-logo-size);
+  height: auto;
+}
+
+.cv-head-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cv-head-text > :last-child {
+  margin-bottom: 0;
+}
+
+.cv-photo {
+  flex: 0 0 auto;
+  width: 180px;
+}
+
+.cv-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cv-head h1 {
+  margin: 0 0 0.1em;
+  font-size: var(--cv-name-size);
+}
+
+.cv .cv-role {
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+}
+
+.cv .cv-role-title {
+  text-transform: uppercase;
+}
+
+.cv .cv-contact {
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.cv .cv-contact-label {
+  margin-right: 0.4em;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.cv .cv-download {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+.cv section {
+  margin-bottom: 2.5rem;
+}
+
+.cv h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cv-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cv-list li {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 0 1.5rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  font-size: 0.95rem;
+}
+
+.cv-list li:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.cv-list .cv-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.cv-list--plain li {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --cv-logo-size: 40px;
+    --cv-name-size: 1.75rem;
+  }
+
+  .content.cv-page {
+    padding: 0.8rem 1rem 2rem;
+  }
+
+  .cv-head {
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .cv-photo {
+    width: 96px;
+  }
+
+  .cv-list li {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
+
+/* Very narrow phones (360px or less): smaller photo and title, so the name
+   still fits on two lines next to the logo and the photo. */
+@media (max-width: 360px) {
+  :root {
+    --cv-name-size: 1.5rem;
+  }
+
+  .cv-photo {
+    width: 80px;
+  }
+}
+
+/* =========================
+   9. CURRICULUM - PRINT / PDF (A4)
+   Used both by Ctrl+P on /cv/ and by /curriculum.pdf, which is generated at
+   build time by printing this same page (eleventy/cv-pdf.js). Same design as on
+   screen, without navigation elements.
+========================= */
+
+@page {
+  size: A4;
+  margin: 12mm 14mm;
+}
+
+@media print {
+  /* Colors as they are (browsers lighten them by default when printing). */
+  html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* /cv/ is the only page designed to be printed: no download link (it makes
+     no sense on paper or in the PDF) and no footer. */
+  .cv-download,
+  .footer {
+    display: none;
+  }
+
+  /* No minimum screen height or main padding, or a blank page is left at the
+     end. */
+  body {
+    min-height: 0;
+  }
+
+  main.cv-main {
+    padding: 0;
+  }
+
+  .content.cv-page {
+    max-width: none;
+    padding: 0;
+  }
+
+  .cv section:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dense version: about 1pt less type and less vertical air. */
+  :root {
+    --cv-name-size: 2.1rem;
+    --cv-logo-size: 64px;
+  }
+
+  .cv-head {
+    margin-bottom: 0.9rem;
+  }
+
+  .cv-photo {
+    width: 100px;
+  }
+
+  .cv .cv-role {
+    font-size: 0.78rem;
+  }
+
+  .cv .cv-contact {
+    font-size: 0.82rem;
+  }
+
+  .cv .cv-contact-label {
+    font-size: 0.78rem;
+  }
+
+  .cv section {
+    margin-bottom: 0.7rem;
+    /* If there is a page break, let it fall between categories: a block is
+       never split. */
+    break-inside: avoid;
+  }
+
+  .cv h2 {
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    break-after: avoid;
+  }
+
+  .cv-list li {
+    break-inside: avoid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 0 1.2rem;
+    padding: 0.22rem 0;
+    font-size: 0.8rem;
+    line-height: 1.32;
+  }
+
+  .cv-list .cv-label {
+    font-size: 0.76rem;
+  }
+}

@@ -61,6 +61,10 @@ module.exports = {
   // Holder of the copyright notice in the footer ("© 2026 Your Name").
   copyrightHolder: "Your Name",
 
+  // Show a "Download PDF" link on the curriculum page (/cv/). Leave it false
+  // unless you have switched on the PDF generation: see docs/cv.md.
+  cvPdf: false,
+
   // Optional, privacy-friendly analytics. Leave `url` empty to include no
   // tracking code at all.
   analytics: {

@@ -146,6 +146,8 @@ Remember to set `url` in `site.js` to the final address before deploying: it fee
 ```
 .eleventy.js            Eleventy configuration and the image and video shortcodes
 eleventy/gallery.js     The gallery engine: gallery and selectedWorks shortcodes
+eleventy/cv.js          The cvsection shortcode of the curriculum page
+eleventy/cv-pdf.js      Optional: builds /curriculum.pdf with Chrome, Edge or Chromium
 config/.htaccess        Cache and compression rules for Apache hosts
 src/_data/site.js       Your settings
 src/_includes/          Layouts (base, gallery), header, footer, shared <head>
