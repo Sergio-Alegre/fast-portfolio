@@ -82,16 +82,19 @@ Use the `gallery.njk` layout for the page (`layout: gallery.njk` in its header) 
 
 ### Steps
 
-1. Click **Use this template** on GitHub, then *Create a new repository*. This gives you your own copy.
-2. Get it onto your computer: on your new repository, **Code > Download ZIP**, and unzip it. (If you already use Git, clone it instead.)
-3. Open a terminal inside that folder, then run:
+1. Get the files: [download the ZIP](https://github.com/Sergio-Alegre/fast-portfolio/archive/refs/heads/main.zip) of this repository and unzip it. (If you already use Git, clone it instead.)
+2. Open a terminal inside that folder, then run these two commands, one at a time:
 
 ```bash
 npm install
 npm start
 ```
 
-Open <http://localhost:8080>. The first run takes a minute: it converts every photo. Later runs are fast.
+3. Open <http://localhost:8080> in your browser. The first run takes about a minute: it converts every photo. Later runs are fast.
+
+You will see an example website: a header with a placeholder logo, a menu, and a gallery of colorful typographic pictures. Whatever you change in the files appears there when you save. To stop it, click the terminal and press **Ctrl+C**.
+
+Happy with what you see? Click **Use this template** on GitHub, then *Create a new repository*. Download *that* repository as a ZIP: it is the copy you will work on and publish.
 
 Using an AI coding assistant? Point it at `AGENTS.md`: it explains the project and what to ask you before it publishes anything.
 
@@ -129,18 +132,38 @@ None by default. To use [Matomo](https://matomo.org) (cookie-less, respecting Do
 
 Not sure which one to pick? **GitHub Pages** is free and publishes by itself every time you save your changes.
 
-```bash
-npm run build
-```
+### Recommended: GitHub Pages
 
-builds the site into `dist/`. Upload that folder to any static host:
+You need your own repository (see Quick start), public on the free plan. The full guide is in [docs/deploy.md](docs/deploy.md).
 
-- **Netlify / Cloudflare Pages / Vercel:** build command `npm run build`, publish directory `dist`.
-- **GitHub Pages:** the included workflow (`.github/workflows/pages.yml`) builds and publishes the site on every push to `main`. To turn it on: in *Settings > Pages*, set the source to **GitHub Actions**, and in *Settings > Secrets and variables > Actions > Variables* add a variable `SITE_URL` with the final address of your site. For a custom domain, add a `CNAME` record at your domain provider pointing to `YOUR-USER.github.io`, then enter the domain in *Settings > Pages*. The site must live at the root of a domain (not in a sub-path), and the repository must be public on the free plan.
-- **Apache hosting:** copy `dist/` to your web root. The included `.htaccess` adds compression and cache headers.
-- **Any server:** `rsync -av --delete dist/ user@host:/path/to/webroot/`.
+1. **Turn Pages on.** In your repository: *Settings > Pages > Source*: **GitHub Actions**. This tells GitHub to build and publish the site for you.
+2. **Tell it your address.** *Settings > Secrets and variables > Actions > Variables > New repository variable*: name `SITE_URL`, value the final address of your site, for example `https://example.com`.
+3. **Send your changes to GitHub.** With [GitHub Desktop](https://desktop.github.com) (free, for Windows and Mac) or the `git` command. Each time your changes arrive, the site is built and published, about 3 minutes later. You can watch it in the repository's *Actions* tab.
+4. **Use your own domain.** At your domain provider, add a `CNAME` record pointing to `YOUR-USER.github.io`, then enter the domain in *Settings > Pages* and tick **Enforce HTTPS** when GitHub allows it.
+
+The site must live at the root of a domain (`example.com`), not in a sub-path (`your-user.github.io/your-repo`), or the styles break.
+
+### Other ways
+
+`npm run build` builds the whole site into the `dist/` folder. Upload the **contents** of that folder to any host that serves static files:
+
+- **Your own web hosting:** upload `dist/` with an SFTP program. Three free, open-source and popular ones: [FileZilla](https://filezilla-project.org) (Windows, macOS and Linux), [Cyberduck](https://cyberduck.io) (Windows and macOS) and [WinSCP](https://winscp.net) (Windows). On Apache servers, the included `.htaccess` adds compression and cache headers.
+- **Netlify, Cloudflare Pages, Vercel:** build command `npm run build`, publish directory `dist`.
+- **Any server with SSH:** `rsync -av --delete dist/ user@host:/path/to/webroot/`.
 
 Remember to set `url` in `site.js` to the final address before deploying: it feeds the canonical links and the sitemap.
+
+---
+
+## Common problems
+
+- **"npm" or "node" is not recognized / command not found.** Node.js is not installed, or the terminal was open while you installed it. Install Node.js 22 or newer, close the terminal, open it again, and check with `node --version`.
+- **"Port 8080 is already in use".** A previous copy is still running. Find its terminal and press **Ctrl+C**, or restart the computer.
+- **The photos appear in the wrong order.** The order is the order of the file names, so the numbers need leading zeros: `portraits-001.jpg`, not `portraits-1.jpg`.
+- **An error saying a gallery folder does not exist.** The name in `{% gallery "..." %}` must match the folder name in `src/images/galleries/` exactly, including capitals.
+- **The first build is slow.** Normal: every photo is converted to several sizes and formats. Later builds only convert what changed.
+- **There is no PDF of the curriculum.** It needs Chrome, Edge or Chromium installed; without one the site still builds, just without the PDF. To turn it off, set `cvPdf: false` in `site.js`.
+- **The site has no styles on GitHub Pages.** It is in a sub-path. Use your own domain, or name the repository `YOUR-USER.github.io`.
 
 ---
 

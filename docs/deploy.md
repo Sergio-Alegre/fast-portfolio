@@ -23,7 +23,7 @@ Then pick one way.
 ## A. Your own hosting
 
 1. `npm run build` creates the **`dist/`** folder: the whole site.
-2. Upload the **contents** of `dist/` to your public folder (often `public_html`), by SFTP, FTP or rsync:
+2. Upload the **contents** of `dist/` to your public folder (often `public_html`). With an SFTP program (free, open-source and popular: [FileZilla](https://filezilla-project.org) for Windows, macOS and Linux; [Cyberduck](https://cyberduck.io) for Windows and macOS; [WinSCP](https://winscp.net) for Windows), or with rsync:
    ```bash
    rsync -av --delete dist/ user@your-server:/path/to/public_html/
    ```
@@ -42,7 +42,7 @@ Free, and it publishes by itself. Needs a **public** repository, and either a **
 
 1. **Turn Pages on.** *Settings > Pages > Build and deployment > Source*: **GitHub Actions**.
 2. **Set your address.** *Settings > Secrets and variables > Actions > Variables > New repository variable*: name `SITE_URL`, value your final address, e.g. `https://example.com` (no trailing slash). Optional: `NOINDEX` = `1` asks search engines to skip the site, handy for a demo.
-3. **Push.** `git push` to `main`. The included workflow (`.github/workflows/pages.yml`) does the rest. Nothing to edit.
+3. **Push.** Send your changes to GitHub with [GitHub Desktop](https://desktop.github.com) (free, for Windows and Mac) or `git push` to `main`. The included workflow (`.github/workflows/pages.yml`) does the rest. Nothing to edit.
 4. **Watch it.** *Actions* tab: yellow while running, green after about 3 minutes.
 5. **Custom domain.** At your domain provider, add a **CNAME** record pointing to `YOUR-USER.github.io` (e.g. name `www`). Then *Settings > Pages > Custom domain*: enter it, *Save*. When GitHub verifies the DNS, tick **Enforce HTTPS**.
 
