@@ -4,18 +4,36 @@ Fast Portfolio is released under the [MIT License](LICENSE). It is built on
 the open-source projects below. Their licenses apply to them, not to this
 project, and their copyright notices must be kept.
 
-This file covers software only. Photographs, text, fonts and icons that may
-ship with a copy of the template have their own terms, listed separately where
-they apply.
+This file covers software and fonts. Photographs, text and icons that may ship
+with a copy of the template have their own terms, listed separately where they
+apply.
 
 ## 1. Included in the published website
 
 These files are copied into the generated site and delivered to visitors'
-browsers, so their full license text is reproduced here.
+browsers, so their license text is included with them.
+
+### Jost
+
+The typeface used for all text, self-hosted as WOFF2 files (Light and Regular)
+in `src/css/fonts/Jost/`. It is served from your own domain, so visitors'
+browsers do not contact any third-party font service.
+
+- Copyright 2020 The Jost Project Authors (<https://github.com/indestructible-type>)
+- License: SIL Open Font License 1.1. The full text is in
+  [`src/css/fonts/Jost/OFL.txt`](src/css/fonts/Jost/OFL.txt) and must stay next
+  to the font files wherever they are copied or redistributed.
+- Also distributed through Google Fonts (<https://fonts.google.com/specimen/Jost>).
+- The copyright notice declares no Reserved Font Name. The OFL allows bundling
+  and commercial use, but forbids selling the font on its own.
+
+If you replace Jost with another typeface, replace this entry with that
+typeface's copyright line and license.
 
 ### PhotoSwipe 5.4.4
 
-The lightbox that opens when a gallery photo is clicked. Copied from
+The lightbox that opens when a gallery photo is clicked. Its full license text
+is reproduced below. Copied from
 `node_modules/photoswipe/dist/` to `js/vendor/photoswipe/` at build time.
 
 - Project: <https://photoswipe.com> ([source](https://github.com/dimsemenov/PhotoSwipe))

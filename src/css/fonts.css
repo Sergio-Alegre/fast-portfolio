@@ -1,0 +1,29 @@
+/* Typography: Jost, self-hosted (no requests to third-party servers).
+   Jost is released under the SIL Open Font License 1.1; see
+   fonts/Jost/OFL.txt. To use another typeface, replace the two @font-face
+   blocks and the two variables below. */
+
+@font-face {
+  font-family: "Jost";
+  src: url("/css/fonts/Jost/Jost-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jost";
+  src: url("/css/fonts/Jost/Jost-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Futura and Century Gothic are only used if the visitor's device already has
+   them (macOS ships Futura); they are never distributed with the site. */
+:root {
+  --font-display: "Jost", Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+  --font-body: "Jost", Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+  --font-display-weight: 400;
+  --font-body-weight: 300;
+}
