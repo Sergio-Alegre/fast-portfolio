@@ -1,0 +1,13 @@
+<footer class="footer">
+  <div class="footer-content">
+    <p class="copyright">
+      &copy;{{ year }} {{ site.copyrightHolder }}
+      {%- for item in site.legal %} · <a href="{{ item.url }}">{{ item.label }}</a>{% endfor %}
+    </p>
+    <ul class="footer-links">
+      {%- for item in site.social %}
+      <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.label }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</footer>

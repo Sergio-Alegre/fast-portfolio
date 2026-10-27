@@ -1,0 +1,20 @@
+{#- Matomo, cookie-less and respecting Do Not Track. Only rendered when
+    site.analytics.matomo.url is set in src/_data/site.js. -#}
+{%- if site.analytics.matomo.url %}
+<script>
+  var _paq = window._paq = window._paq || [];
+  _paq.push(["disableCampaignParameters"]);
+  _paq.push(["setDoNotTrack", true]);
+  _paq.push(["disableCookies"]);
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+  _paq.push(["disableBrowserFeatureDetection"]);
+  (function() {
+    var u = "{{ site.analytics.matomo.url }}";
+    _paq.push(["setTrackerUrl", u + "matomo.php"]);
+    _paq.push(["setSiteId", "{{ site.analytics.matomo.siteId }}"]);
+    var d = document, g = d.createElement("script"), s = d.getElementsByTagName("script")[0];
+    g.async = true; g.src = u + "matomo.js"; s.parentNode.insertBefore(g, s);
+  })();
+</script>
+{%- endif %}

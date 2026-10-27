@@ -1,0 +1,96 @@
+const path = require("path");
+const Image = require("@11ty/eleventy-img");
+const registerGalleryShortcodes = require("./eleventy/gallery.js");
+
+const OUTPUT_DIR = "./dist/img/";
+const URL_PATH = "/img/";
+
+// Source file names are not always URL-safe (accents, "©", spaces...). Only the
+// names of the generated variants (the URLs in dist/) are sanitised, never the
+// source file in src/.
+function slugifyBasename(src) {
+  const base = path.basename(src, path.extname(src));
+  return base
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "") // strip accents (á -> a)
+    .replace(/[^a-zA-Z0-9._-]+/g, "-") // "©", spaces, etc. -> "-"
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+// Single image with responsive AVIF / WebP / JPEG variants.
+async function imageShortcode(src, alt, sizes = "(max-width: 768px) 100vw, 720px") {
+  const metadata = await Image(src, {
+    widths: [320, 640, 1024],
+    formats: ["avif", "webp", "jpeg"],
+    outputDir: OUTPUT_DIR,
+    urlPath: URL_PATH,
+    filenameFormat: (id, file, width, format) => `${slugifyBasename(file)}-${width}.${format}`,
+    sharpOptions: { fit: "inside" },
+    formatOptions: {
+      jpeg: { quality: 82, mozjpeg: true },
+      webp: { quality: 80 },
+      avif: { quality: 50 }
+    }
+  });
+
+  return Image.generateHTML(metadata, {
+    alt,
+    sizes,
+    loading: "lazy",
+    decoding: "async"
+  });
+}
+
+module.exports = function (eleventyConfig) {
+  // Everything in src/css (stylesheets and self-hosted fonts) is copied as is.
+  // With `npm start` the dev server picks up changes to it automatically.
+  eleventyConfig.addPassthroughCopy({ "src/css": "css" });
+
+  // Favicons and icons.
+  eleventyConfig.addPassthroughCopy({ "src/images/icons": "images" });
+
+  // Apache cache and compression rules (ignored by other hosts).
+  eleventyConfig.addPassthroughCopy({ "config/.htaccess": ".htaccess" });
+
+  // Global data available in every template.
+  eleventyConfig.addGlobalData("year", new Date().getFullYear());
+  // The stylesheets and scripts have no content hash in their file names, so
+  // they are requested as "?v=<build>" to allow long caching without serving a
+  // stale version after the next deploy.
+  eleventyConfig.addGlobalData("buildTime", Date.now());
+
+  // {% image "src/images/photo.jpg", "Alt text" %}
+  eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+
+  // {% youtube "VIDEO_ID" %} or {% youtube "VIDEO_ID", 40 %} (start second).
+  // Uses the cookie-less youtube-nocookie.com domain.
+  eleventyConfig.addShortcode("youtube", function (id, start) {
+    const query = start ? `?start=${parseInt(start, 10)}` : "";
+    return `
+      <div class="video">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/${id}${query}"
+          title="YouTube video"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+    `;
+  });
+
+  // Galleries: {% gallery %} and {% selectedWorks %}
+  registerGalleryShortcodes(eleventyConfig);
+
+  return {
+    dir: {
+      input: "src",
+      includes: "_includes",
+      layouts: "_includes/layouts",
+      output: "dist"
+    },
+    markdownTemplateEngine: "njk",
+    htmlTemplateEngine: "njk",
+    dataTemplateEngine: "njk"
+  };
+};

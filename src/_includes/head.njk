@@ -1,0 +1,29 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{ seoTitle or (title + ' · ' + site.title) }}</title>
+<meta name="description" content="{{ description or site.description }}" />
+<link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+{%- if noindex %}
+<meta name="robots" content="noindex" />
+{%- endif %}
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="{{ site.name }}" />
+<meta property="og:title" content="{{ seoTitle or (title + ' · ' + site.title) }}" />
+<meta property="og:description" content="{{ description or site.description }}" />
+<meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+
+<link rel="stylesheet" href="/css/fonts.css?v={{ buildTime }}" />
+<link rel="stylesheet" href="/css/styles.css?v={{ buildTime }}" />
+<!-- Fonts are requested as soon as the HTML is parsed, instead of waiting for
+     the stylesheet to be downloaded and parsed first. -->
+<link rel="preload" href="/css/fonts/Jost/Jost-Light.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/css/fonts/Jost/Jost-Regular.woff2" as="font" type="font/woff2" crossorigin />
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+<link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+<link rel="shortcut icon" href="/images/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+{% include "analytics.njk" %}

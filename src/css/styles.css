@@ -1,0 +1,440 @@
+/* =========================
+   1. RESET / BASE
+   Typeface variables and @font-face live in fonts.css.
+========================= */
+
+:root {
+  --header-height: 80px;
+  --text: #111;
+  --text-muted: #666;
+  --line: rgba(0, 0, 0, 0.3);
+  --background: #fff;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  background-color: var(--background);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh; /* real visible viewport: avoids the extra gap on mobile */
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  font-weight: var(--font-body-weight);
+}
+
+main {
+  flex: 1;
+  padding: 1em;
+  margin-top: var(--header-height); /* the header is fixed */
+}
+
+/* =========================
+   2. TYPOGRAPHY
+========================= */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight);
+  line-height: 1.2;
+  margin: 1em 0 0.5em;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1rem; text-transform: uppercase; }
+h6 { font-size: 0.875rem; text-transform: uppercase; }
+
+.copyright {
+  font-size: 0.75em;
+  color: var(--text-muted);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =========================
+   3. HEADER / NAV
+========================= */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  background: var(--background);
+  height: var(--header-height);
+  padding: 0.5em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-inner {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.logo img {
+  display: block;
+  height: 48px;
+  width: auto;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+@media (hover: hover) {
+  .logo:hover {
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo {
+    transition: none;
+  }
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.8em;
+}
+
+.main-nav a {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a[aria-current="page"] {
+  color: var(--text);
+  border-bottom-color: var(--line);
+}
+
+/* Hamburger menu button: hidden on desktop. */
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--text);
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .main-nav.is-open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--background);
+    padding: 0.7rem 1rem 1.2rem;
+  }
+
+  .main-nav.is-open ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+}
+
+/* =========================
+   4. FOOTER
+========================= */
+
+.footer {
+  background: var(--background);
+  width: 100%;
+  padding: 0.5em 1em;
+  font-size: 0.9em;
+}
+
+.footer-content {
+  max-width: 660px;
+  padding: 0 1em;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+.footer-content p {
+  margin: 0;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.2em;
+}
+
+.footer-links a,
+.footer .copyright a {
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover,
+.footer .copyright a:hover {
+  color: var(--text);
+}
+
+/* =========================
+   5. TEXT CONTENT (layout base.njk)
+========================= */
+
+.content {
+  max-width: 696px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  line-height: 1.6;
+}
+
+.content p {
+  margin-bottom: 1rem;
+}
+
+.content img,
+.content picture {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.content a {
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.2s ease;
+}
+
+.content a:hover {
+  border-bottom-color: var(--text);
+}
+
+.content hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2.5rem 0;
+}
+
+.content .video {
+  margin: 2rem 0;
+}
+
+.video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+}
+
+.video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* =========================
+   6. RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+  :root {
+    --header-height: 56px;
+  }
+
+  main {
+    padding: 0;
+  }
+
+  .content {
+    padding: 0.8rem 1rem;
+  }
+
+  .content > h1:first-child,
+  .content > h2:first-child {
+    margin-top: 0;
+  }
+
+  .site-header {
+    padding: 0.3em 1em;
+  }
+
+  .logo img {
+    height: 30px;
+  }
+
+  .footer-content {
+    flex-direction: column-reverse;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* =========================
+   7. GALLERY (justified rows)
+========================= */
+
+/* Wide container for gallery pages (layout gallery.njk), instead of the text
+   column of .content. Full width with a ceiling on very large screens. */
+.gallery-wide {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 1em;
+}
+
+/* The 3 blocks (mobile / tablet / desktop) are always generated at build time;
+   only the one matching the real window width is shown. Browsers do not
+   download the images of display:none blocks, so this costs no extra
+   bandwidth. */
+.gallery-rows {
+  display: none;
+}
+
+@media (max-width: 599px) {
+  .gallery-rows--mobile {
+    display: block;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 999px) {
+  .gallery-rows--tablet {
+    display: block;
+  }
+}
+
+@media (min-width: 1000px) {
+  .gallery-rows--desktop {
+    display: block;
+  }
+}
+
+.gallery-row {
+  display: flex;
+  gap: 8px;
+}
+
+.gallery-row + .gallery-row {
+  margin-top: 8px;
+}
+
+/* Each photo is a flex item with flex-grow = its own aspect ratio and
+   flex-basis: 0. Flexbox shares the row width in that proportion, which
+   mathematically gives every photo in the row the same final height without
+   cropping any of them. */
+.gallery-item,
+.selected-work-item {
+  position: relative;
+  display: block;
+  flex-basis: 0;
+  min-width: 0;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 0;
+}
+
+.gallery-item picture,
+.gallery-item img,
+.selected-work-item picture,
+.selected-work-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Blur-up placeholder: the background (a blurred base64 thumbnail) shows until
+   the sharp image finishes loading and fades in. */
+.gallery-img {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.gallery-img.is-loaded {
+  opacity: 1;
+}
+
+.selected-work-item {
+  transition: opacity 0.2s ease;
+}
+
+.selected-work-item:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .gallery-wide {
+    padding: 0.8rem 0.8rem 1rem;
+  }
+
+  /* Same distance from the first element (usually the title) to the header
+     as on pages based on base.njk. */
+  .gallery-wide > h1:first-child,
+  .gallery-wide > h2:first-child {
+    margin-top: 0;
+  }
+}

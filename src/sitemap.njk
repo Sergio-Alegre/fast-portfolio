@@ -1,0 +1,13 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+{#- Only pages with the base or gallery layout, and without "noindex". -#}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for item in collections.all %}
+{%- if (item.data.layout == "base.njk" or item.data.layout == "gallery.njk") and not item.data.noindex %}
+  <url><loc>{{ site.url }}{{ item.url }}</loc></url>
+{%- endif %}
+{%- endfor %}
+</urlset>

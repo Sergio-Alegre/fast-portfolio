@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+  <head>
+    {% include "head.njk" %}
+    <!-- photoswipe.css is injected by src/js/gallery.js: it is only needed for
+         the lightbox, not to paint the grid, so a synchronous <link> here
+         would block rendering for nothing. -->
+  </head>
+
+  <body>
+    {% include "header.njk" %}
+
+    <main>
+      <div class="gallery-wide">
+        {{ content | safe }}
+      </div>
+    </main>
+
+    {% include "footer.njk" %}
+
+    <script type="module" src="/js/gallery.js?v={{ buildTime }}" defer></script>
+  </body>
+</html>
