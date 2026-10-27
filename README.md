@@ -161,6 +161,18 @@ src/*.md                Your pages
 
 ---
 
+## Use it also for your curriculum
+
+There is a secondary tool built into this template that creates a curriculum at `example.com/cv/`. That way you can send a fast, professional-looking link by email or WhatsApp, or just tell it to people in person.
+
+By default it takes its look from the settings of the website, but you can edit the CSS as you please. It also generates a PDF: you can download it yourself and send it by email, or the people who receive your link can save it in A4 format and print it. The PDF is built with Chrome, Edge or Chromium; if none is installed, the page still works and the PDF is simply skipped.
+
+I hope it helps you get in contact about new job positions.
+
+The page is `src/cv/index.md`, and [docs/cv.md](docs/cv.md) explains how to write it, how the PDF works and how to turn it off.
+
+---
+
 ## Built with
 
 [Eleventy](https://www.11ty.dev), [@11ty/eleventy-img](https://github.com/11ty/eleventy-img), [sharp](https://sharp.pixelplumbing.com), [justified-layout](https://github.com/flickr/justified-layout) and [PhotoSwipe](https://photoswipe.com). The typeface is [Jost](https://github.com/indestructible-type), and the footer icons come from [Simple Icons](https://simpleicons.org) and [Lucide](https://lucide.dev).
