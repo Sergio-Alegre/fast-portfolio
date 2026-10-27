@@ -50,6 +50,9 @@ module.exports = function (eleventyConfig) {
   // Favicons and icons.
   eleventyConfig.addPassthroughCopy({ "src/images/icons": "images" });
 
+  // Social icons used by the footer (see `social` in src/_data/site.js).
+  eleventyConfig.addPassthroughCopy({ "src/images/social": "images/social" });
+
   // Apache cache and compression rules (ignored by other hosts).
   eleventyConfig.addPassthroughCopy({ "config/.htaccess": ".htaccess" });
 

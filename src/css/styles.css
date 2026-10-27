@@ -241,6 +241,33 @@ a {
   color: var(--text);
 }
 
+/* Icons are <img> with a black SVG, so the text color does not affect them:
+   they are softened by default and turn solid on hover or keyboard focus. */
+.social-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footer-links a:hover .social-icon,
+.footer-links a:focus-visible .social-icon {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .footer-links a:hover .social-icon {
+    transform: scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-icon {
+    transition: none;
+  }
+}
+
 /* =========================
    5. TEXT CONTENT (layout base.njk)
 ========================= */
@@ -270,6 +297,21 @@ a {
 
 .content a:hover {
   border-bottom-color: var(--text);
+}
+
+/* Code samples must never push the page wider than the text column: long
+   lines scroll inside the block instead. */
+.content pre {
+  overflow-x: auto;
+  margin: 0 0 1rem;
+  padding: 0.8rem 1rem;
+  background: rgba(0, 0, 0, 0.04);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.content code {
+  font-size: 0.9em;
 }
 
 .content hr {

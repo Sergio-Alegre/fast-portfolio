@@ -6,7 +6,15 @@
     </p>
     <ul class="footer-links">
       {%- for item in site.social %}
-      <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.label }}</a></li>
+      <li>
+        {%- if item.icon %}
+        <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" title="{{ item.label }}" aria-label="{{ item.label }}">
+          <img src="/images/social/{{ item.icon }}.svg" alt="" class="social-icon" width="20" height="20" />
+        </a>
+        {%- else %}
+        <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.label }}</a>
+        {%- endif %}
+      </li>
       {%- endfor %}
     </ul>
   </div>

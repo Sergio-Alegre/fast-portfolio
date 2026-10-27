@@ -42,6 +42,16 @@ You can also click **Use this template** on GitHub to start your own repository.
 
 The text uses [Jost](https://fonts.google.com/specimen/Jost), served from your own domain (`src/css/fonts/`), so visitors' browsers never contact a font service. To use another typeface, replace the `@font-face` blocks and the two variables at the top of [`src/css/fonts.css`](src/css/fonts.css). Remember to keep the license of whatever font you bundle next to its files.
 
+### Footer icons
+
+The footer shows icons for Instagram, YouTube, GitHub, email, WhatsApp and
+Telegram, from [Simple Icons](https://simpleicons.org) (CC0) and
+[Lucide](https://lucide.dev) (ISC). Choose which ones appear, and in what order,
+in the `social` list of `site.js`. To add another, put an SVG in
+`src/images/social/` and reference its name; keep its license in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). An entry without `icon` is
+shown as a text link.
+
 ### Analytics
 
 None by default. To use [Matomo](https://matomo.org) (cookie-less, respecting Do Not Track), set `analytics.matomo.url` in `site.js`.
@@ -83,12 +93,13 @@ src/css/                Stylesheet, typeface and its license
 src/js/gallery.js       Browser script: lightbox and image fade-in
 src/images/galleries/   One folder per gallery
 src/images/icons/       Favicons and app icons
+src/images/social/      Footer icons (Instagram, YouTube, GitHub...)
 src/*.md                Your pages
 ```
 
 ## Built with
 
-[Eleventy](https://www.11ty.dev), [@11ty/eleventy-img](https://github.com/11ty/eleventy-img), [sharp](https://sharp.pixelplumbing.com), [justified-layout](https://github.com/flickr/justified-layout) and [PhotoSwipe](https://photoswipe.com). The typeface is [Jost](https://github.com/indestructible-type).
+[Eleventy](https://www.11ty.dev), [@11ty/eleventy-img](https://github.com/11ty/eleventy-img), [sharp](https://sharp.pixelplumbing.com), [justified-layout](https://github.com/flickr/justified-layout) and [PhotoSwipe](https://photoswipe.com). The typeface is [Jost](https://github.com/indestructible-type), and the footer icons come from [Simple Icons](https://simpleicons.org) and [Lucide](https://lucide.dev).
 
 ## License
 

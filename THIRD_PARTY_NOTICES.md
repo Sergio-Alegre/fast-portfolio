@@ -4,7 +4,7 @@ Fast Portfolio is released under the [MIT License](LICENSE). It is built on
 the open-source projects below. Their licenses apply to them, not to this
 project, and their copyright notices must be kept.
 
-This file covers software and fonts. Photographs, text and icons that may ship
+This file covers software, fonts and icons. Photographs and text that may ship
 with a copy of the template have their own terms, listed separately where they
 apply.
 
@@ -29,6 +29,44 @@ browsers do not contact any third-party font service.
 
 If you replace Jost with another typeface, replace this entry with that
 typeface's copyright line and license.
+
+### Social icons
+
+The icons shown in the footer, in `src/images/social/`.
+
+**Simple Icons 16.36.0** (<https://simpleicons.org>): `github.svg`,
+`instagram.svg`, `telegram.svg`, `whatsapp.svg` and `youtube.svg`.
+
+- License: CC0 1.0 Universal (public domain dedication). No attribution is
+  required.
+- The brand logos are trademarks of their respective owners. They are included
+  only so that visitors can recognise a link to your profile on that service,
+  and they do not imply any endorsement. Check each brand's guidelines if you
+  use them in another way.
+
+**Lucide 0.469.0** (<https://lucide.dev>): `mail.svg`.
+
+- License: ISC. The notice below must be kept with the icon.
+
+```
+ISC License
+
+Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2022.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+```
+
+If you add icons from another source, list them here with their license.
 
 ### PhotoSwipe 5.4.4
 

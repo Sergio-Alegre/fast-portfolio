@@ -33,10 +33,19 @@ module.exports = {
     { label: "Contact", url: "/contact/" }
   ],
 
-  // Footer links on the right. Plain text links; add or remove freely.
+  // Footer links on the right, shown as icons. `icon` is the name of a file in
+  // src/images/social/ without the extension: instagram, youtube, github,
+  // telegram, whatsapp and mail are included. Without an `icon`, the label is
+  // shown as a text link. `label` is also the accessible name of the icon.
+  // Add your own icons to that folder (SVG, ideally 24x24) and keep their
+  // licenses in THIRD_PARTY_NOTICES.md.
   social: [
-    { label: "Instagram", url: "https://www.instagram.com/" },
-    { label: "Email", url: "mailto:you@example.com" }
+    { label: "Instagram", url: "https://www.instagram.com/", icon: "instagram" },
+    { label: "YouTube", url: "https://www.youtube.com/", icon: "youtube" },
+    { label: "GitHub", url: "https://github.com/", icon: "github" },
+    { label: "Email", url: "mailto:you@example.com", icon: "mail" },
+    { label: "WhatsApp", url: "https://wa.me/", icon: "whatsapp" },
+    { label: "Telegram", url: "https://t.me/", icon: "telegram" }
   ],
 
   // Footer links to your legal pages (privacy policy, imprint...). Remove the
