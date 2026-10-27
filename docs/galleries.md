@@ -10,17 +10,20 @@ page with:
 The page needs `layout: gallery.njk` in its header to get the wide container
 (the `base.njk` layout is a narrow column of text).
 
-## Exporting from Lightroom
+## Exporting your photos
 
-1. Set the final order of the photos in Lightroom (drag them in the filmstrip or
-   the grid view). The gallery follows the order of the file names.
+Any photo editing or library software works, as long as it can export JPEG files
+with a sequential file name.
+
+1. Decide the final order of the photos in your software. The gallery follows the
+   order of the file names.
 2. Export to `src/images/galleries/folder-name/`:
    - Format JPEG, color space sRGB, quality 80-90.
-   - Resize to fit **Long Edge**, **at least 2600 px**. The lightbox shows this
-     size; the grid uses smaller versions the build generates for you.
-   - Rename with **Custom Name - Sequence**: custom name `folder-name`, start
-     number `001`. Lightroom keeps the zero padding when the start number has
-     leading zeros.
+   - Resize to fit the **long edge**, **at least 2600 px**. The lightbox shows
+     this size; the grid uses smaller versions the build generates for you.
+   - Rename the files with a custom name followed by a sequence number: name
+     `folder-name`, starting at `001`. Most programs keep the zero padding when
+     the start number is written with leading zeros; check yours.
 3. The result should be:
 
    ```

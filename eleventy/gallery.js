@@ -7,7 +7,7 @@
  *   {% gallery "folder-name" %}
  *     -> Renders every photo in src/images/galleries/folder-name/ (in file
  *        name order, which matches the numeric order thanks to the zero
- *        padding in the names exported from Lightroom) as a grid of
+ *        padding in the exported file names) as a grid of
  *        justified rows, with a lightbox (PhotoSwipe) on click.
  *   {% gallery "folder-name", "Alt text prefix" %}
  *     -> Same, with "Alt text prefix 1", "Alt text prefix 2"... as the alt
@@ -77,7 +77,7 @@ function getGalleryFiles(folderName) {
   if (!fs.existsSync(dir)) {
     throw new Error(
       `[gallery] The folder "src/images/galleries/${folderName}" does not exist. ` +
-        `Check the exact name of the folder exported from Lightroom.`
+        `Check the exact name of the folder you exported to.`
     );
   }
   const files = fs

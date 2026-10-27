@@ -1,7 +1,7 @@
 {
   "name": "fast-portfolio",
   "version": "0.1.0",
-  "description": "Fast, static photography portfolio template for Eleventy. Export from Lightroom into a folder and the gallery builds itself.",
+  "description": "Fast, static photography portfolio template for Eleventy. Export your photos into a folder and the gallery builds itself.",
   "license": "MIT",
   "author": "Sergio Alegre Vicente",
   "repository": {
@@ -14,7 +14,6 @@
     "photography",
     "portfolio",
     "gallery",
-    "lightroom",
     "avif",
     "static-site"
   ],
