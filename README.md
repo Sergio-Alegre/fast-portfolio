@@ -96,7 +96,7 @@ You will see an example website: a header with a placeholder logo, a menu, and a
 
 Happy with what you see? Click **Use this template** on GitHub, then *Create a new repository*. Download *that* repository as a ZIP: it is the copy you will work on and publish.
 
-Using an AI coding assistant? Point it at `AGENTS.md`: it explains the project and what to ask you before it publishes anything. (`AGENTS.md` is a plain text file of instructions that coding assistants read before they touch a project.)
+Using an AI coding assistant? Point it at `AGENTS.md`: it explains the project and what to ask you before it publishes anything. (`AGENTS.md` is a plain text file of instructions that coding assistants, like Claude Code or ChatGPT Codex, read before they touch a project.)
 
 ---
 
