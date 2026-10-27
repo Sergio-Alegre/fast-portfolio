@@ -26,7 +26,8 @@
 
 const fs = require("fs");
 const path = require("path");
-const Image = require("@11ty/eleventy-img");
+// eleventy-img 7 is an ES module: its default export is the same Image function.
+const Image = require("@11ty/eleventy-img").default;
 const justifiedLayout = require("justified-layout");
 
 const GALLERIES_DIR = path.join(__dirname, "..", "src", "images", "galleries");

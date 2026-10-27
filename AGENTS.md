@@ -4,7 +4,7 @@ Instructions for AI coding assistants working in this repository, for example wh
 
 ## What this is
 
-Fast Portfolio is a static photography portfolio template built with [Eleventy](https://www.11ty.dev) 3. Photos exported into a folder become justified-row galleries with a lightbox; the site is plain HTML, CSS and one small script. Needs Node.js 20 or newer.
+Fast Portfolio is a static photography portfolio template built with [Eleventy](https://www.11ty.dev) 3. Photos exported into a folder become justified-row galleries with a lightbox; the site is plain HTML, CSS and one small script. Needs Node.js 22 or newer.
 
 ## Commands
 

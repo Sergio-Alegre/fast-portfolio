@@ -5,7 +5,7 @@ Two ways to publish: your own hosting, or GitHub Pages. Both start the same.
 ## First: make it yours
 
 1. Click **Use this template** on GitHub, then *Create a new repository*.
-2. Clone it and install ([Node.js](https://nodejs.org) 20 or newer):
+2. Clone it and install ([Node.js](https://nodejs.org) 22 or newer):
    ```bash
    git clone https://github.com/YOUR-USER/YOUR-REPO.git
    cd YOUR-REPO

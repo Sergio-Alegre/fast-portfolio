@@ -18,7 +18,7 @@
     "static-site"
   ],
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "scripts": {
     "start": "eleventy --serve",
@@ -28,9 +28,9 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
-    "@11ty/eleventy-img": "^6.0.4",
+    "@11ty/eleventy-img": "^7.1.1",
     "justified-layout": "^4.1.0",
     "photoswipe": "^5.4.4",
-    "sharp": "^0.34.3"
+    "sharp": "^0.35.5"
   }
 }

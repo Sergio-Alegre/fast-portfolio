@@ -75,7 +75,7 @@ Use the `gallery.njk` layout for the page (`layout: gallery.njk` in its header) 
 
 ## Quick start
 
-You need [Node.js](https://nodejs.org) 20 or newer.
+You need [Node.js](https://nodejs.org) 22 or newer.
 
 ```bash
 git clone https://github.com/Sergio-Alegre/fast-portfolio.git my-portfolio

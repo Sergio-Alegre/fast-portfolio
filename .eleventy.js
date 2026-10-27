@@ -1,5 +1,6 @@
 const path = require("path");
-const Image = require("@11ty/eleventy-img");
+// eleventy-img 7 is an ES module: its default export is the same Image function.
+const Image = require("@11ty/eleventy-img").default;
 const registerGalleryShortcodes = require("./eleventy/gallery.js");
 const registerCvShortcodes = require("./eleventy/cv.js");
 const registerCvPdf = require("./eleventy/cv-pdf.js");
