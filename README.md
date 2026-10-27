@@ -88,6 +88,8 @@ Open <http://localhost:8080>. The first build takes a few seconds per gallery be
 
 You can also click **Use this template** on GitHub to start your own repository.
 
+Using an AI coding assistant? Point it at `AGENTS.md`: it explains the project and what to ask you before it publishes anything.
+
 ---
 
 ## Make it yours
