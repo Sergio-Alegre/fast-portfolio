@@ -6,4 +6,4 @@ description: A smaller series, to show a second gallery.
 ---
 # Series
 
-{% gallery "example-series", "Example series photograph" %}
+{% gallery "example-series", "Doodle portrait of a composer" %}
