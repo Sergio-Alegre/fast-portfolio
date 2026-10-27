@@ -7,6 +7,8 @@ Export your photos from your photo editing software into a folder, and the galle
 
 [Live demo](https://demo.sergioalegre.com)
 
+Want to try it on your computer right now? Jump to the [Quick start](#quick-start).
+
 You have exported and organized pictures into folders many, many times in your life, but building online galleries, not so often. So let's use the skill with the least mental friction to publish our work online.
 
 - **Galleries from folders.** Drop the exported JPEGs in `src/images/galleries/<name>/`, add one line to a page, and you get a gallery. No manifest, no captions file, no admin panel.
@@ -41,7 +43,7 @@ The biggest novelty of this implementation is the shortcode: you just name a fol
 {% gallery "portraits" %}
 ```
 
-That is the whole thing: copy that line into a page as it is, changing only the name. The engine looks for the folder `src/images/galleries/portraits/`, so you only write the name of the subfolder, never the path.
+That is the whole thing: copy that line into a page as it is, changing only the name. (A *shortcode* is a short line between curly braces that a page turns into something bigger, here a whole gallery.) The engine looks for the folder `src/images/galleries/portraits/`, so you only write the name of the subfolder, never the path.
 
 Export the pictures from your favorite photography software straight into that folder, ideally adding a three-digit number to the file names so you know in which order they will appear:
 
@@ -77,12 +79,12 @@ Use the `gallery.njk` layout for the page (`layout: gallery.njk` in its header) 
 
 ### What you need
 
-- **Node.js 22 or newer:** the free program that builds the site. Download it from [nodejs.org](https://nodejs.org) and install it like any other app.
+- **Node.js 22 or newer:** the free program that builds the site. Download it from [nodejs.org](https://nodejs.org) and install it like any other app. To check that it worked, type `node --version` in the terminal: it should show 22 or higher.
 - **A terminal:** the window where you type commands. On Windows, search for "Terminal"; on Mac, open "Terminal" from Applications > Utilities. Inside your folder, right-click and choose *Open in Terminal* (Windows), or drag the folder onto the Terminal icon (Mac).
 
 ### Steps
 
-1. Get the files: [download the ZIP](https://github.com/Sergio-Alegre/fast-portfolio/archive/refs/heads/main.zip) of this repository and unzip it. (If you already use Git, clone it instead.)
+1. Get the files: [download the ZIP](https://github.com/Sergio-Alegre/fast-portfolio/archive/refs/heads/main.zip) of this repository and unzip it. This copy is just for trying it out. (If you already use Git, clone it instead.)
 2. Open a terminal inside that folder, then run these two commands, one at a time:
 
 ```bash
@@ -102,7 +104,7 @@ Using an AI coding assistant? Point it at `AGENTS.md`: it explains the project a
 
 ## Make it yours
 
-1. **Edit [`src/_data/site.js`](src/_data/site.js):** your name, final URL, menu, social links, legal links, copyright holder. Every layout, the footer, the sitemap, `robots.txt` and the web manifest read from it.
+1. **Edit [`src/_data/site.js`](src/_data/site.js)** with any text editor (Notepad, TextEdit, VS Code...): your name, final URL, menu, social links, legal links, copyright holder. Every layout, the footer, the sitemap, `robots.txt` and the web manifest read from it.
 2. **Replace the example photos.** Delete `src/images/galleries/example-gallery/` and `example-series/` (they are generated abstract images) and add your own folders. See [docs/galleries.md](docs/galleries.md).
 3. **Edit the pages** in `src/`: `index.md` (home gallery), `series/`, `selected/`, `about/`, `contact/`, `privacy/`. Each is a Markdown file with a short header.
 4. **Replace the logo and the icons** in `src/images/icons/`: `logo.svg` is the square placeholder shown in the header (point `logo` in `site.js` at your own image, or set it to `null`), and the rest are the favicons and app icons.
@@ -130,9 +132,9 @@ None by default. To use [Matomo](https://matomo.org) (cookie-less, respecting Do
 
 ## Deploying
 
-Not sure which one to pick? **GitHub Pages** is free and publishes by itself every time you save your changes.
+Which one? **Already have web hosting?** Upload the site with an SFTP program (see "Already have hosting" below). **No hosting yet?** Use **GitHub Pages**: it is free and publishes by itself every time you save your changes.
 
-### Recommended: GitHub Pages
+### No hosting yet: GitHub Pages
 
 You need your own repository (see Quick start), public on the free plan. The full guide is in [docs/deploy.md](docs/deploy.md).
 
@@ -143,7 +145,7 @@ You need your own repository (see Quick start), public on the free plan. The ful
 
 The site must live at the root of a domain (`example.com`), not in a sub-path (`your-user.github.io/your-repo`), or the styles break.
 
-### Other ways
+### Already have hosting, or another service
 
 `npm run build` builds the whole site into the `dist/` folder. Upload the **contents** of that folder to any host that serves static files:
 

@@ -107,6 +107,18 @@ module.exports = function (eleventyConfig) {
   }
   eleventyConfig.addGlobalData("cvPdfLink", Boolean(site.cvPdf) && registerCvPdf.canGenerate());
 
+  // A friendly message when `npm start` is ready, so you know what to do next
+  // (the build itself prints a long list of technical lines).
+  let announced = false;
+  eleventyConfig.on("eleventy.after", ({ runMode }) => {
+    if (runMode === "serve") {
+      if (announced) return;
+      announced = true;
+      console.log("\n  Your site is ready: open http://localhost:8080 in your browser.");
+      console.log("  Changes you save appear there by themselves. To stop, press Ctrl+C.\n");
+    }
+  });
+
   return {
     dir: {
       input: "src",
