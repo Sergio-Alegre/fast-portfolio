@@ -15,6 +15,18 @@ The gallery engine comes from [sergioalegre.com](https://sergioalegre.com), whic
 
 > Status: early (0.1). It works and it is what runs that site, but expect rough edges. Issues and suggestions are welcome.
 
+---
+
+## Why a static web page?
+
+If this is not your first online portfolio, you have probably already used WordPress or a service like Squarespace. This is an alternative: a very compact, much faster HTML website that you can host almost anywhere. In the worst case, even at home. Better still, on any professional web hosting. I use Hetzner, but OVH and many others work just as well, with plans starting at around €2 a month and the uptime of a professional data center.
+
+On top of that, because the site is static, the software only runs when you change something and generate it again. Your visitors always receive the same plain files. There are no plugins to update and nothing that can break: if it works today, it keeps working. It is solid as a rock. It is also very hard to get this kind of speed out of WordPress, and plain HTML is the safest option for compatibility.
+
+For me, the main reasons are **zero maintenance** and **cheap, professional hosting**.
+
+---
+
 ## Quick start
 
 You need [Node.js](https://nodejs.org) 20 or newer.
@@ -29,6 +41,8 @@ npm start
 Open <http://localhost:8080>. The first build takes a few seconds per gallery because every image is converted; later builds reuse the results.
 
 You can also click **Use this template** on GitHub to start your own repository.
+
+---
 
 ## Make it yours
 
@@ -56,6 +70,8 @@ shown as a text link.
 
 None by default. To use [Matomo](https://matomo.org) (cookie-less, respecting Do Not Track), set `analytics.matomo.url` in `site.js`.
 
+---
+
 ## Adding a gallery
 
 Short version: export to `src/images/galleries/my-gallery/` as `my-gallery-001.jpg`, `my-gallery-002.jpg`, and so on, then in any page:
@@ -65,6 +81,8 @@ Short version: export to `src/images/galleries/my-gallery/` as `my-gallery-001.j
 ```
 
 Use the `gallery.njk` layout for the page (`layout: gallery.njk` in its header) to get the wide container. The full export settings and the other shortcodes (`selectedWorks`, `image`, `youtube`) are in [docs/galleries.md](docs/galleries.md).
+
+---
 
 ## Deploying
 
@@ -80,6 +98,8 @@ builds the site into `dist/`. Upload that folder to any static host:
 - **Any server:** `rsync -av --delete dist/ user@host:/path/to/webroot/`.
 
 Remember to set `url` in `site.js` to the final address before deploying: it feeds the canonical links and the sitemap.
+
+---
 
 ## Project structure
 
@@ -97,9 +117,13 @@ src/images/social/      Footer icons (Instagram, YouTube, GitHub...)
 src/*.md                Your pages
 ```
 
+---
+
 ## Built with
 
 [Eleventy](https://www.11ty.dev), [@11ty/eleventy-img](https://github.com/11ty/eleventy-img), [sharp](https://sharp.pixelplumbing.com), [justified-layout](https://github.com/flickr/justified-layout) and [PhotoSwipe](https://photoswipe.com). The typeface is [Jost](https://github.com/indestructible-type), and the footer icons come from [Simple Icons](https://simpleicons.org) and [Lucide](https://lucide.dev).
+
+---
 
 ## License
 
