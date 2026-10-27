@@ -47,17 +47,21 @@ The PDF is not a source file: it is generated at the end of the build by
 printing the page `/cv/` with a headless Chrome, Edge or Chromium, so it has the
 look of the page, in A4. There is nothing to edit by hand.
 
-It is **switched off by default**, so a normal build needs no browser. To switch
-it on:
+It is **on by default** and it **never breaks the build**:
 
-1. In `.eleventy.js`, uncomment the `require("./eleventy/cv-pdf.js")` line at the
-   top and the `registerCvPdf(eleventyConfig);` line further down.
-2. In `src/_data/site.js`, set `cvPdf: true`. This shows the "Download PDF" link
-   on the page.
-3. Make sure Chrome, Edge or Chromium is installed.
+- With Chrome, Edge or Chromium installed, `npm run build` creates
+  `dist/curriculum.pdf` and the page shows a "Download PDF" link.
+- Without one (for example on Netlify, Vercel or Cloudflare Pages, which do not
+  include a browser), the build prints a warning, carries on without the PDF and
+  hides the link.
+- To turn it off completely, set `cvPdf: false` in `src/_data/site.js`.
+- To make a missing PDF an error, set `CV_PDF_REQUIRED=1` when you build. Use it
+  before a deploy that syncs `dist/` with deletion (such as `rsync --delete`):
+  without a PDF in `dist/`, the old one would be removed from the server.
 
-Then `npm run build` creates `dist/curriculum.pdf`. The script is Node.js, not a
-shell script, so it is the same on every system.
+The script is Node.js, not a shell script, so it is the same on every system.
+Safari and Firefox cannot be used: unlike Chrome, Edge and Chromium, they cannot
+print a page to PDF from the command line.
 
 ### Which browser it uses
 
@@ -98,8 +102,8 @@ needs the `--no-sandbox` flag. There is a commented line for it in
   images and fonts it uses, and `cv-pdf.js`. If nothing changed, the PDF saved in
   `.cache/` is reused (it survives `npm run rebuild`) and the build does not need
   the browser.
-- **If there is no browser** and the PDF has to be generated, the build fails on
-  purpose: otherwise a deploy would delete the PDF from the server.
+- **If there is no browser** and the PDF has to be generated, it is skipped with a
+  warning (or the build fails if `CV_PDF_REQUIRED=1`).
 - **Isolated render:** `dist/` is served from a temporary local server. For the
   render, the analytics code is removed (printing must not count as a visit) and
   the internal links become absolute, pointing to the `url` in `site.js`.

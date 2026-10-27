@@ -61,9 +61,11 @@ module.exports = {
   // Holder of the copyright notice in the footer ("© 2026 Your Name").
   copyrightHolder: "Your Name",
 
-  // Show a "Download PDF" link on the curriculum page (/cv/). Leave it false
-  // unless you have switched on the PDF generation: see docs/cv.md.
-  cvPdf: false,
+  // Build /curriculum.pdf from the curriculum page (/cv/) and show a "Download
+  // PDF" link on it. It needs Chrome, Edge or Chromium installed; without one
+  // the build still works, just without the PDF and the link. Set it to false
+  // to turn it off. See docs/cv.md.
+  cvPdf: true,
 
   // Optional, privacy-friendly analytics. Leave `url` empty to include no
   // tracking code at all.

@@ -18,7 +18,7 @@ description: Curriculum vitae of Don Juan, a very generic example.
 <p class="cv-role"><span class="cv-role-title">Artist</span>, based in Anytown</p>
 <p class="cv-contact"><span class="cv-contact-label">Address</span> 123 Fake Street, Anytown</p>
 <p class="cv-contact"><span class="cv-contact-label">Contact</span> <a href="mailto:your@email.com">your@email.com</a> / <a href="tel:+123456789">+123 456 789</a></p>
-{%- if site.cvPdf %}
+{%- if cvPdfLink %}
 <p class="cv-download"><a href="/curriculum.pdf">Download PDF</a></p>
 {%- endif %}
 </div>

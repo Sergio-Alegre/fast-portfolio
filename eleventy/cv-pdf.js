@@ -9,16 +9,19 @@
  * of src/css/styles.css. See docs/cv.md.
  *
  * THIS IS NODE.JS, NOT A SHELL SCRIPT: the same file works on Windows, macOS and
- * Linux. It is switched off by default (see the commented lines in
- * .eleventy.js), so a normal build needs no browser at all.
+ * Linux. It is on by default (`cvPdf` in src/_data/site.js) but it never breaks
+ * the build: if no browser is found, or the browser fails, it prints a warning
+ * and the build carries on without the PDF (and without the "Download PDF"
+ * link). To make that an error instead, for example before a deploy that would
+ * otherwise delete the PDF from the server, set CV_PDF_REQUIRED=1.
  *
  * - It is only regenerated when something that affects the result changes (the
  *   page HTML, the CSS, the images and fonts it uses, and this file). The
  *   generated PDF is kept in .cache/ so it survives "npm run rebuild" (which
  *   deletes dist/) without needing the browser.
- * - If it has to be generated and no browser is found, the build fails instead
- *   of carrying on without a PDF: a deploy would delete /curriculum.pdf from
- *   the server.
+ * - If it has to be generated and cannot be, the PDF is skipped with a warning
+ *   (see above). A deploy that syncs dist/ with --delete would then remove an
+ *   old /curriculum.pdf from the server: use CV_PDF_REQUIRED=1 in that case.
  *
  * Which browser it uses:
  *   1. The CV_PDF_BROWSER environment variable, if set. Examples:
@@ -109,15 +112,14 @@ function browserCandidates() {
 }
 
 function findBrowser() {
-  const found = browserCandidates().find((p) => fs.existsSync(p));
-  if (!found) {
-    throw new Error(
-      "cv-pdf: Chrome, Edge or Chromium not found, needed to generate /curriculum.pdf. " +
-        "Install one, or give its path in the CV_PDF_BROWSER environment variable (see docs/cv.md)."
-    );
-  }
-  return found;
+  return browserCandidates().find((p) => fs.existsSync(p)) || null;
 }
+
+const REQUIRED = process.env.CV_PDF_REQUIRED === "1";
+
+const NO_BROWSER_MESSAGE =
+  "[cv-pdf] No Chrome, Edge or Chromium found: /curriculum.pdf was NOT generated. " +
+  "Install one, or give its path in the CV_PDF_BROWSER environment variable (see docs/cv.md).";
 
 // The version URLs (?v=<build time>) change on every build: they do not count.
 function normalize(text) {
@@ -189,8 +191,7 @@ async function waitForPdf(file, timeoutMs = 30000) {
   return false;
 }
 
-async function renderPdf(outDir, target) {
-  const browser = findBrowser();
+async function renderPdf(browser, outDir, target) {
   const server = await startServer(outDir);
   const profile = fs.mkdtempSync(path.join(os.tmpdir(), "cv-pdf-"));
   const tmpPdf = path.join(profile, OUTPUT_NAME);
@@ -240,13 +241,32 @@ async function buildCvPdf(outDir) {
     fs.existsSync(CACHED_PDF) && fs.existsSync(CACHED_HASH) && fs.readFileSync(CACHED_HASH, "utf8") === hash;
 
   if (!upToDate) {
-    await renderPdf(outDir, CACHED_PDF);
+    const browser = findBrowser();
+    if (!browser) {
+      if (REQUIRED) throw new Error(NO_BROWSER_MESSAGE);
+      console.warn(NO_BROWSER_MESSAGE);
+      return;
+    }
+    try {
+      await renderPdf(browser, outDir, CACHED_PDF);
+    } catch (err) {
+      if (REQUIRED) throw err;
+      console.warn(`[cv-pdf] /curriculum.pdf was NOT generated: ${err.message}`);
+      return;
+    }
     fs.writeFileSync(CACHED_HASH, hash);
     console.log(`[cv-pdf] ${OUTPUT_NAME} generated`);
   }
   fs.copyFileSync(CACHED_PDF, path.join(outDir, OUTPUT_NAME));
 }
 
-module.exports = function registerCvPdf(eleventyConfig) {
+function registerCvPdf(eleventyConfig) {
   eleventyConfig.on("eleventy.after", ({ dir }) => buildCvPdf(dir.output));
-};
+}
+
+// True if a PDF can be produced: a browser is available, or a PDF from an
+// earlier build is cached. Used to decide whether to show the "Download PDF"
+// link on the page.
+registerCvPdf.canGenerate = () => Boolean(findBrowser()) || fs.existsSync(CACHED_PDF);
+
+module.exports = registerCvPdf;
