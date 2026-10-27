@@ -27,6 +27,44 @@ For me, the main reasons are **zero maintenance** and **cheap, professional host
 
 ---
 
+## The gallery function and shortcode
+
+The biggest novelty of this implementation is the shortcode: you just name a folder. Put your pictures in a subfolder of `src/images/galleries/` and write the name of that subfolder in the page:
+
+```
+{% gallery "portraits" %}
+```
+
+That is the whole thing. The engine looks for the folder `src/images/galleries/portraits/`, so you only write the name of the subfolder, never the path.
+
+Export the pictures from your favorite photography software straight into that folder, ideally adding a three-digit number to the file names so you know in which order they will appear:
+
+```
+src/images/galleries/portraits/
+  portraits-001.jpg
+  portraits-002.jpg
+  portraits-003.jpg
+  ...
+```
+
+When the site is built, it calculates the grid by itself, in justified rows that show every picture complete: nothing is cropped away. It then builds the gallery without you ever going through the settings pages of WordPress, creating online galleries, dragging and dropping, or any of the workflow you probably already know. This is just exporting into a folder, that's it.
+
+Here is a complete page, the one that holds a home gallery. The `gallery.njk` layout gives the gallery its wide container:
+
+```
+---
+layout: gallery.njk
+title: Portraits
+---
+# Portraits
+
+{% gallery "portraits" %}
+```
+
+The files can be JPEG or PNG. To add, remove or reorder pictures, change the files in the folder and build again; no page needs to be edited. Export settings, alt texts and the other shortcodes are in [docs/galleries.md](docs/galleries.md).
+
+---
+
 ## Quick start
 
 You need [Node.js](https://nodejs.org) 20 or newer.
