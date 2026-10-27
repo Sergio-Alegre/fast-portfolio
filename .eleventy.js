@@ -29,7 +29,9 @@ async function imageShortcode(src, alt, sizes = "(max-width: 768px) 100vw, 720px
     formats: ["avif", "webp", "jpeg"],
     outputDir: OUTPUT_DIR,
     urlPath: URL_PATH,
-    filenameFormat: (id, file, width, format) => `${slugifyBasename(file)}-${width}.${format}`,
+    // `id` is a hash of the source image: when you replace a photo keeping its
+    // file name, the output gets a new name instead of reusing the old one.
+    filenameFormat: (id, file, width, format) => `${slugifyBasename(file)}-${id}-${width}.${format}`,
     sharpOptions: { fit: "inside" },
     formatOptions: {
       jpeg: { quality: 82, mozjpeg: true },
