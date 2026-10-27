@@ -41,7 +41,7 @@ The biggest novelty of this implementation is the shortcode: you just name a fol
 {% gallery "portraits" %}
 ```
 
-That is the whole thing. The engine looks for the folder `src/images/galleries/portraits/`, so you only write the name of the subfolder, never the path.
+That is the whole thing: copy that line into a page as it is, changing only the name. The engine looks for the folder `src/images/galleries/portraits/`, so you only write the name of the subfolder, never the path.
 
 Export the pictures from your favorite photography software straight into that folder, ideally adding a three-digit number to the file names so you know in which order they will appear:
 
@@ -96,7 +96,7 @@ You will see an example website: a header with a placeholder logo, a menu, and a
 
 Happy with what you see? Click **Use this template** on GitHub, then *Create a new repository*. Download *that* repository as a ZIP: it is the copy you will work on and publish.
 
-Using an AI coding assistant? Point it at `AGENTS.md`: it explains the project and what to ask you before it publishes anything.
+Using an AI coding assistant? Point it at `AGENTS.md`: it explains the project and what to ask you before it publishes anything. (`AGENTS.md` is a plain text file of instructions that coding assistants read before they touch a project.)
 
 ---
 
