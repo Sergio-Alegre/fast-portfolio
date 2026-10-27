@@ -30,6 +30,14 @@ browsers do not contact any third-party font service.
 If you replace Jost with another typeface, replace this entry with that
 typeface's copyright line and license.
 
+### Placeholder logo
+
+`src/images/icons/logo.svg` is a placeholder. Its letters are outlines of the
+Anton typeface (Copyright 2020 The Anton Project Authors,
+<https://github.com/googlefonts/AntonFont.git>, SIL Open Font License 1.1).
+The OFL allows using a font to create artwork, so the SVG carries no font and no
+extra conditions. Replace it with your own logo.
+
 ### Social icons
 
 The icons shown in the footer, in `src/images/social/`.

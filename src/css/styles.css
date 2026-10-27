@@ -97,7 +97,9 @@ a {
 }
 
 .logo {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
   transition: transform 0.2s ease;
 }
 

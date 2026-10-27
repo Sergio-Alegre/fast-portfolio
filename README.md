@@ -35,7 +35,7 @@ You can also click **Use this template** on GitHub to start your own repository.
 1. **Edit [`src/_data/site.js`](src/_data/site.js):** your name, final URL, menu, social links, legal links, copyright holder. Every layout, the footer, the sitemap, `robots.txt` and the web manifest read from it.
 2. **Replace the example photos.** Delete `src/images/galleries/example-gallery/` and `example-series/` (they are generated abstract images) and add your own folders. See [docs/galleries.md](docs/galleries.md).
 3. **Edit the pages** in `src/`: `index.md` (home gallery), `series/`, `selected/`, `about/`, `contact/`, `privacy/`. Each is a Markdown file with a short header.
-4. **Replace the icons** in `src/images/icons/` (favicons and app icons) with your own.
+4. **Replace the logo and the icons** in `src/images/icons/`: `logo.svg` is the square placeholder shown in the header (point `logo` in `site.js` at your own image, or set it to `null`), and the rest are the favicons and app icons.
 5. **Write your own privacy policy.** `src/privacy/index.md` is only a placeholder.
 
 ### Typeface

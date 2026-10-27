@@ -19,10 +19,14 @@ module.exports = {
   // Language of the pages (the lang attribute of <html>).
   language: "en",
 
-  // Header: a text wordmark by default. To use an image instead, put it in
-  // src/images/ and set its path, e.g. "/images/logo.svg" (shown at 30-48px
-  // tall).
-  logo: null,
+  // Header logo, shown to the left of the name. Put your own image (square
+  // works best) in src/images/icons/ and set its path here, e.g.
+  // "/images/logo.svg" (shown at 30-48px tall). The included one is only a
+  // placeholder: replace the file or the path. Use null for no image.
+  logo: "/images/logo.svg",
+
+  // Show `name` next to the logo. With `logo: null` the name is always shown.
+  showNameWithLogo: true,
 
   // Main menu, in order.
   nav: [
