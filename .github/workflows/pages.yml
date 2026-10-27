@@ -1,0 +1,57 @@
+name: Deploy to GitHub Pages
+
+# Publishes the site to GitHub Pages on every push to main, and whenever you
+# press "Run workflow" in the Actions tab.
+#
+# It stays idle until you set it up, so a fresh copy of the template never
+# shows a red cross:
+#   1. Settings > Pages > Build and deployment > Source: GitHub Actions
+#   2. Settings > Secrets and variables > Actions > Variables > New repository
+#      variable:  SITE_URL = the final address of your site, for example
+#      https://example.com (no trailing slash)
+#   3. Optional: a variable NOINDEX = 1 asks search engines to skip the whole
+#      site (useful for a demo or a test copy).
+# See the README, section "Deploying".
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: vars.SITE_URL != ''
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL: ${{ vars.SITE_URL }}
+      NOINDEX: ${{ vars.NOINDEX }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

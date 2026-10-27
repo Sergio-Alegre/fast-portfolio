@@ -133,7 +133,7 @@ npm run build
 builds the site into `dist/`. Upload that folder to any static host:
 
 - **Netlify / Cloudflare Pages / Vercel:** build command `npm run build`, publish directory `dist`.
-- **GitHub Pages:** publish `dist/`. The site must live at the root of a domain (not in a sub-path).
+- **GitHub Pages:** the included workflow (`.github/workflows/pages.yml`) builds and publishes the site on every push to `main`. To turn it on: in *Settings > Pages*, set the source to **GitHub Actions**, and in *Settings > Secrets and variables > Actions > Variables* add a variable `SITE_URL` with the final address of your site. For a custom domain, add a `CNAME` record at your domain provider pointing to `YOUR-USER.github.io`, then enter the domain in *Settings > Pages*. The site must live at the root of a domain (not in a sub-path), and the repository must be public on the free plan.
 - **Apache hosting:** copy `dist/` to your web root. The included `.htaccess` adds compression and cache headers.
 - **Any server:** `rsync -av --delete dist/ user@host:/path/to/webroot/`.
 
