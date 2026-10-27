@@ -13,8 +13,9 @@ module.exports = {
   description: "Portfolio of Your Name, photographer based in Your City.",
 
   // Final address of the site, WITHOUT a trailing slash. Used for canonical
-  // URLs, the sitemap and robots.txt.
-  url: "https://example.com",
+  // URLs, the sitemap and robots.txt. The SITE_URL environment variable, if set,
+  // takes precedence (handy for hosts that build the site for you).
+  url: process.env.SITE_URL || "https://example.com",
 
   // Language of the pages (the lang attribute of <html>).
   language: "en",

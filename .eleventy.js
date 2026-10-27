@@ -67,6 +67,9 @@ module.exports = function (eleventyConfig) {
   // they are requested as "?v=<build>" to allow long caching without serving a
   // stale version after the next deploy.
   eleventyConfig.addGlobalData("buildTime", Date.now());
+  // NOINDEX=1 asks search engines to skip the whole site (for demos and
+  // staging copies).
+  eleventyConfig.addGlobalData("noindexSite", process.env.NOINDEX === "1");
 
   // {% image "src/images/photo.jpg", "Alt text" %}
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);

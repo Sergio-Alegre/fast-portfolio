@@ -3,7 +3,7 @@
 <title>{{ seoTitle or (title + ' · ' + site.title) }}</title>
 <meta name="description" content="{{ description or site.description }}" />
 <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
-{%- if noindex %}
+{%- if noindex or noindexSite %}
 <meta name="robots" content="noindex" />
 {%- endif %}
 
