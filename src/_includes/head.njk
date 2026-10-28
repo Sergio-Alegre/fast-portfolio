@@ -13,8 +13,8 @@
 <meta property="og:description" content="{{ description or site.description }}" />
 <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
 
-<link rel="stylesheet" href="/css/fonts.css?v={{ buildTime }}" />
-<link rel="stylesheet" href="/css/styles.css?v={{ buildTime }}" />
+<link rel="stylesheet" href="/css/fonts.css?v={{ assetVersion }}" />
+<link rel="stylesheet" href="/css/styles.css?v={{ assetVersion }}" />
 <!-- Fonts are requested as soon as the HTML is parsed, instead of waiting for
      the stylesheet to be downloaded and parsed first. -->
 <link rel="preload" href="/css/fonts/Jost/Jost-Light.woff2" as="font" type="font/woff2" crossorigin />

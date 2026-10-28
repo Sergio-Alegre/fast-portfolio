@@ -1,3 +1,5 @@
+const crypto = require("crypto");
+const fs = require("fs");
 const path = require("path");
 // eleventy-img 7 is an ES module: its default export is the same Image function.
 const Image = require("@11ty/eleventy-img").default;
@@ -65,9 +67,17 @@ module.exports = function (eleventyConfig) {
   // Global data available in every template.
   eleventyConfig.addGlobalData("year", new Date().getFullYear());
   // The stylesheets and scripts have no content hash in their file names, so
-  // they are requested as "?v=<build>" to allow long caching without serving a
-  // stale version after the next deploy.
-  eleventyConfig.addGlobalData("buildTime", Date.now());
+  // they are requested as "?v=<hash>" to allow long caching without serving a
+  // stale version after the next deploy. The version is a hash of their
+  // content, not the build time: the HTML only changes (and a deploy only
+  // uploads it again) when the CSS or the script really change.
+  eleventyConfig.addGlobalData("assetVersion", () => {
+    const hash = crypto.createHash("sha256");
+    for (const file of ["src/css/fonts.css", "src/css/styles.css", "src/js/gallery.js"]) {
+      hash.update(fs.readFileSync(file));
+    }
+    return hash.digest("hex").slice(0, 10);
+  });
   // NOINDEX=1 asks search engines to skip the whole site (for demos and
   // staging copies).
   eleventyConfig.addGlobalData("noindexSite", process.env.NOINDEX === "1");

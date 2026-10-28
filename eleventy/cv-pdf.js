@@ -121,9 +121,9 @@ const NO_BROWSER_MESSAGE =
   "[cv-pdf] No Chrome, Edge or Chromium found: /curriculum.pdf was NOT generated. " +
   "Install one, or give its path in the CV_PDF_BROWSER environment variable (see docs/cv.md).";
 
-// The version URLs (?v=<build time>) change on every build: they do not count.
+// The version URLs (?v=<hash>) do not affect the PDF: they do not count.
 function normalize(text) {
-  return text.replace(/\?v=\d+/g, "");
+  return text.replace(/\?v=[0-9a-f]+/g, "");
 }
 
 // Hash of everything that affects the PDF: the page, the CSS, the local files
